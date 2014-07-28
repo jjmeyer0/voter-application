@@ -9,7 +9,7 @@
 <body>
     <c:choose>
         <c:when test="${fn:length(games) == 0}">
-            We don't own any games! <a href="/add-game">Add one!</a>
+            We don't own any games! <a href="/mark-game">Add one!</a>
 
         </c:when>
 

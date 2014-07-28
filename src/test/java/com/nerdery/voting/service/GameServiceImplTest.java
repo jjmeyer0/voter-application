@@ -29,7 +29,6 @@ public class GameServiceImplTest {
         Game g = gameService.createGame("ooo");
         Assert.assertEquals("ooo", g.getTitle());
         Assert.assertNotNull(g.getCreated());
-        Assert.assertNotNull(g.getVotes());
         Assert.assertFalse(g.isOwned());
     }
 

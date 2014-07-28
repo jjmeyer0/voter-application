@@ -2,6 +2,7 @@ package com.nerdery.voting.service;
 
 import com.nerdery.voting.model.Game;
 import com.nerdery.voting.repository.GameRepository;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,12 +24,21 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public List<Game> getNonOwnedGamesSortedByVoteCount() {
-        return gameRepository.findAllGamesWithVotes();
+    public List<Game> getNonOwnedGamesSortedByVoteCountLoadEagerly() {
+        List<Game> allGamesWithVotes = gameRepository.findAllGamesWithVotes();
+        Hibernate.initialize(allGamesWithVotes);
+        return allGamesWithVotes;
     }
+
+
 
     @Override
     public List<Game> getOwnedGames() {
         return gameRepository.findAllGamesByIsOwned(Boolean.TRUE);
+    }
+
+    @Override
+    public List<Game> getAllGames() {
+        return gameRepository.findAll();
     }
 }

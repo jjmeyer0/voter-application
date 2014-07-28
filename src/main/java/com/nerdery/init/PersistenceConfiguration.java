@@ -27,7 +27,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @EnableWebMvc
 @EnableJpaRepositories(basePackages = {"com.nerdery.voting.repository"})
-@PropertySource({ "classpath:persistence.properties" })
+@PropertySource({ "classpath:/env/${ENV:test}/persistence.properties" })
 @ComponentScan(basePackages = { "com.nerdery", "com.nerdery.voting" }) // TODO: be more specific, add multiple
 public class PersistenceConfiguration {
     private static final String JDBC_DRIVER = "jdbc.driver";
@@ -61,6 +61,8 @@ public class PersistenceConfiguration {
 
         Properties properties = new Properties();
         properties.put(HIBERNATE_HBM2DDL_AUTO, environment.getProperty(HIBERNATE_HBM2DDL_AUTO));
+        properties.put(HIBERNATE_DIALECT, environment.getProperty(HIBERNATE_DIALECT));
+        properties.put(HIBERNATE_SHOW_SQL, environment.getProperty(HIBERNATE_SHOW_SQL));
 
         factoryBean.setJpaProperties(properties);
 
@@ -96,21 +98,6 @@ public class PersistenceConfiguration {
 
         return urlBasedViewResolver;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

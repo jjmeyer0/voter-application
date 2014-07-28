@@ -1,6 +1,7 @@
 package com.nerdery.voting.service;
 
 import com.nerdery.voting.model.Game;
+import com.nerdery.voting.model.Vote;
 
 public interface VoteService {
     /**
@@ -8,5 +9,5 @@ public interface VoteService {
      * @param game
      * @return
      */
-    Long castVote(Game game);
+    Vote castVote(Game game);
 }

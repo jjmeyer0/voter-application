@@ -24,11 +24,17 @@ public interface GameService {
      * TODO
      * @return
      */
-    List<Game> getNonOwnedGamesSortedByVoteCount();
+    List<Game> getNonOwnedGamesSortedByVoteCountLoadEagerly();
 
     /**
      * TODO
      * @return
      */
     List<Game> getOwnedGames();
+
+    /**
+     * TODO
+     * @return
+     */
+    List<Game> getAllGames();
 }

@@ -1,5 +1,0 @@
-insert into Game values (title, isOwned) values ('0', true)
-insert into Game values (title, isOwned) values ('00', true)
-insert into Game values (title, isOwned) values ('000', true)
-insert into Game values (title, isOwned) values ('0000', true)
-insert into Game values (title, isOwned) values ('00000', true)

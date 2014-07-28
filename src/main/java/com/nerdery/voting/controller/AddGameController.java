@@ -1,7 +1,6 @@
 package com.nerdery.voting.controller;
 
 import com.nerdery.voting.model.Game;
-import com.nerdery.voting.repository.GameRepository;
 import com.nerdery.voting.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,8 +15,6 @@ import java.util.logging.Logger;
 public class AddGameController {
     @Autowired
     private GameService gameService;
-    @Autowired
-    private GameRepository gameRepository;
 
     static Logger logger = Logger.getLogger(AddGameController.class.getName());
 

@@ -28,4 +28,13 @@ public class OwnedGamesController {
 
         return new ModelAndView("owned-games", "games", ownedGames);
     }
+
+    @Transactional
+    @RequestMapping("/all-games")
+    public ModelAndView allGames() {
+        List<Game> games = gameService.getAllGames();
+        logger.log(Level.INFO, "There are this many games: " + games.size());
+
+        return new ModelAndView("all-games", "games", games);
+    }
 }

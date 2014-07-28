@@ -14,13 +14,8 @@ public class VoteServiceImpl implements VoteService {
     @Autowired
     private VoteRepository voteRepository;
 
-    /**
-     * TODO
-     * @param game
-     * @return
-     */
     @Override
-    public Long castVote(Game game) {
-        return voteRepository.save(new Vote(game)).getId();
+    public Vote castVote(Game game) {
+        return voteRepository.save(new Vote(game));
     }
 }
