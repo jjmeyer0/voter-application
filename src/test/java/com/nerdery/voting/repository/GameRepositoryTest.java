@@ -20,6 +20,7 @@ import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
+@Transactional
 @ContextConfiguration(classes = { PersistenceConfiguration.class })
 public class GameRepositoryTest {
     @Autowired
@@ -51,7 +52,6 @@ public class GameRepositoryTest {
         Assert.assertEquals(0, g.getVotes().size());
     }
 
-    @Transactional
     @Test
     public void makeSureFindByTitleWorks() throws Exception {
         gameRepository.save(new Game("test", Boolean.FALSE));
@@ -62,7 +62,6 @@ public class GameRepositoryTest {
         Assert.assertEquals(expected, g);
     }
 
-    @Transactional
     @Test
     public void makeSureFindByIdWorksProperly() throws Exception {
         Game g = new Game("test2", Boolean.FALSE);
@@ -100,7 +99,6 @@ public class GameRepositoryTest {
         gameRepository.save(new Game(null, Boolean.FALSE));
     }
 
-    @Transactional
     @Test
     public void makeSureProperGamesAndOrderAreReturned() throws Exception {
         Game game = new Game("1");
@@ -124,7 +122,6 @@ public class GameRepositoryTest {
         Assert.assertEquals(expected, g);
     }
 
-    @Transactional
     @Test
     public void makeSureFindByIsOwnedWorks() throws Exception {
         Game game = new Game("q", Boolean.TRUE);

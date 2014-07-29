@@ -45,9 +45,7 @@ public class GameServiceImplTest {
         Game g = gameService.createGame("title");
         g.setIsOwned(true);
         gameService.save(g);
-        List<Game> games = gameService.getOwnedGames();
-        List<Game> wanted = gameService.getWantedGamesSortedByVoteCountLoadEagerly();
-        Assert.assertEquals(1, games.size());
-        Assert.assertEquals(0, wanted.size());
+
+        Assert.assertTrue(gameService.getGameByTitle(g.getTitle()).isOwned());
     }
 }
