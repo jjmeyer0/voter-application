@@ -4,7 +4,6 @@ import com.nerdery.init.PersistenceConfiguration;
 import com.nerdery.voting.model.Game;
 import com.nerdery.voting.model.Vote;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;

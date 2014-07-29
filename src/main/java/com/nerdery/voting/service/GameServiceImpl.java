@@ -2,7 +2,6 @@ package com.nerdery.voting.service;
 
 import com.nerdery.voting.model.Game;
 import com.nerdery.voting.repository.GameRepository;
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

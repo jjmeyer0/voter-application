@@ -5,7 +5,6 @@ import com.nerdery.voting.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@Transactional
 @Controller
 public class OwnedGamesController {
 
@@ -23,7 +23,6 @@ public class OwnedGamesController {
 
     static Logger logger = Logger.getLogger(OwnedGamesController.class.getName());
 
-    @Transactional
     @RequestMapping("/owned-games")
     public ModelAndView ownedGames() {
         List<Game> ownedGames = gameService.getOwnedGames();
@@ -32,7 +31,6 @@ public class OwnedGamesController {
         return new ModelAndView("owned-games", "games", ownedGames);
     }
 
-    @Transactional
     @RequestMapping("/mark-games")
     public ModelAndView makeGames() {
         List<Game> wantedGames = gameService.getWantedGamesSortedByVoteCountLoadEagerly();
