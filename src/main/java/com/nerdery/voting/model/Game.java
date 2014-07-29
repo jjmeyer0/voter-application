@@ -1,6 +1,7 @@
 package com.nerdery.voting.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,16 +15,18 @@ public class Game extends TimeStampEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Size(min = 1, max = 100)
     @Column(nullable = false, unique = true)
     private String title;
 
     @Column(nullable = false)
     private Boolean isOwned;
 
-    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL) // TODO: look into this
+    // Normally I would not use eager. It is a quick way to get the number of votes.
+    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, fetch = FetchType.EAGER) // TODO: look into this
     private Set<Vote> votes;
 
-    protected Game() {
+    public Game() {
     }
 
     /**
@@ -50,6 +53,10 @@ public class Game extends TimeStampEntity {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {

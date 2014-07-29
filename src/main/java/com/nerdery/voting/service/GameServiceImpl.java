@@ -24,13 +24,11 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public List<Game> getNonOwnedGamesSortedByVoteCountLoadEagerly() {
-        List<Game> allGamesWithVotes = gameRepository.findAllGamesWithVotes();
+    public List<Game> getWantedGamesSortedByVoteCountLoadEagerly() {
+        List<Game> allGamesWithVotes = gameRepository.findAllWantedGames();
         Hibernate.initialize(allGamesWithVotes);
         return allGamesWithVotes;
     }
-
-
 
     @Override
     public List<Game> getOwnedGames() {
@@ -38,7 +36,17 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public List<Game> getAllGames() {
-        return gameRepository.findAll();
+    public Game getGameByTitle(String title) {
+        return gameRepository.findByTitle(title);
+    }
+
+    @Override
+    public boolean doesGameExistByTitle(String title) {
+        return title != null && getGameByTitle(title) != null;
+    }
+
+    @Override
+    public Game save(Game game) {
+        return gameRepository.save(game);
     }
 }

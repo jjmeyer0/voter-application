@@ -5,9 +5,9 @@
     <title>Add a Game!</title>
 </head>
 <body>
-<form:form method="GET" modelAttribute="game" action="save-game">
+<form:form method="post" modelAttribute="game" action="save-game">
     <form:label path="title">Title:</form:label>
-    <form:input path="title"></form:input>
+    <form:input path="title"/><br>
 
     <input value="Submit" type="submit">
 </form:form>

@@ -1,23 +1,27 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!-- TODO merge this and owned-games.jsp -->
+
 <html>
 <head>
     <title>All Games</title>
 </head>
 <body>
-<c:choose>
-    <c:when test="${fn:length(games) == 0}">
-        No games exist! <a href="/add-game">Add a game you want!</a>
 
-    </c:when>
+    <h1>Owned Games</h1>
+    <c:forEach items="${ownedGames}" var="owned">
+        <form:label path="title">Title: ${owned.title}</form:label><br>
+    </c:forEach>
 
-    <c:otherwise>
-        <c:forEach var="game" items="${games}">
-            <li>${game.title}</li>
+    <h1>Wanted Games</h1>
+    <form:form method="post" modelAttribute="wantedGame" action="vote-for-game">
+        <c:forEach items="${wantedGames}" var="game">
+            <form:radiobutton path="title" value="${game.title}"/>Title: ${game.title} Votes: ${fn:length(game.votes)}<br>
         </c:forEach>
-    </c:otherwise>
-</c:choose>
+        <c:if test="${fn:length(wantedGames) !=  0}">
+            <input type="submit" value="Vote">
+        </c:if>
+    </form:form>
 </body>
 </html>

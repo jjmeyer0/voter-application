@@ -5,7 +5,9 @@ import com.nerdery.voting.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -30,11 +32,21 @@ public class OwnedGamesController {
     }
 
     @Transactional
-    @RequestMapping("/all-games")
-    public ModelAndView allGames() {
-        List<Game> games = gameService.getAllGames();
-        logger.log(Level.INFO, "There are this many games: " + games.size());
+    @RequestMapping("/mark-games")
+    public ModelAndView makeGames() {
+        List<Game> wantedGames = gameService.getWantedGamesSortedByVoteCountLoadEagerly();
+        return new ModelAndView("owned-games", "wantedGames", wantedGames);
+    }
 
-        return new ModelAndView("all-games", "games", games);
+    @RequestMapping(value = "/marked-game", method = RequestMethod.POST)
+    public ModelAndView addGame(@ModelAttribute Game game) {
+        game.setIsOwned(true);
+        gameService.save(game);
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("add-game-success");
+        modelAndView.addObject("game", game);
+
+        return modelAndView;
     }
 }

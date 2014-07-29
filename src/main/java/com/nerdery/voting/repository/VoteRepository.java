@@ -14,12 +14,4 @@ public interface VoteRepository extends CrudRepository<Vote, Long> {
      * @return If {@code game} has no votes empty list otherwise all the {@link Vote}s associated with {@code game}.
      */
     List<Vote> findByGame(Game game);
-
-    /**
-     * TODO
-     *
-     * @param id
-     * @return
-     */
-    Vote findById(Long id);
 }

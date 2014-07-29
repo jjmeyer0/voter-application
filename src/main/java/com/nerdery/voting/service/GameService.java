@@ -6,14 +6,16 @@ import java.util.List;
 
 public interface GameService {
     /**
-     * TODO
-     * @param title
-     * @return
+     * This will create a {@link Game} and will return the {@link Game} object that
+     * was persisted.
+     *
+     * @param title The title to give the new {@link Game}.
+     * @return The {@link Game} object that was created.
      */
     Game createGame(String title);
 
     /**
-     * TODO
+     *
      * @param title
      * @param isOwned
      * @return
@@ -24,17 +26,33 @@ public interface GameService {
      * TODO
      * @return
      */
-    List<Game> getNonOwnedGamesSortedByVoteCountLoadEagerly();
-
-    /**
-     * TODO
-     * @return
-     */
     List<Game> getOwnedGames();
 
     /**
      * TODO
+     * @param title
      * @return
      */
-    List<Game> getAllGames();
+    Game getGameByTitle(String title);
+
+    /**
+     * TODO
+     * @param title
+     * @return
+     */
+    boolean doesGameExistByTitle(String title);
+
+    /**
+     * TODO
+     *
+     * @param game
+     * @return
+     */
+    Game save(Game game);
+
+    /**
+     * This will get all of the {@link Game}s and their associated collections.
+     * @return The list of {@link Game}s that are wanted.
+     */
+    List<Game> getWantedGamesSortedByVoteCountLoadEagerly();
 }

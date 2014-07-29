@@ -3,6 +3,7 @@ package com.nerdery.voting.repository;
 import com.nerdery.voting.model.Game;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -31,10 +32,10 @@ public interface GameRepository extends JpaRepository<Game, Long> {
      * all associated votes ordered by most number of votes then by the title.
      *
      * @return List of all {@link Game}s that have votes ordered by most votes then title. If not games exist
-     * then null. TODO change >= 0 to > 0?
+     * then null.
      */
     @Query(value = "from Game g where size(g.votes) >= 0 order by size(g.votes) desc, g.title")
-    List<Game> findAllGamesWithVotes();
+    List<Game> findAllWantedGames();
 
     /**
      * This query will find all games that match {@code isOwned}.
@@ -42,5 +43,6 @@ public interface GameRepository extends JpaRepository<Game, Long> {
      * @return If {@code isOwned} is true then all games that are owned. If {@code isOwned} is false then return
      * all games that are not owned.
      */
-    List<Game> findAllGamesByIsOwned(Boolean isOwned);
+    @Query(value = "from Game g where g.isOwned = :isOwned order by g.title")
+    List<Game> findAllGamesByIsOwned(@Param("isOwned") Boolean isOwned);
 }

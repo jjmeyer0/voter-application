@@ -1,16 +1,10 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: tperkis
-  Date: 7/28/14
-  Time: 9:51 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title></title>
 </head>
 <body>
-
+    <c:out value="${error}"/>
 </body>
 </html>

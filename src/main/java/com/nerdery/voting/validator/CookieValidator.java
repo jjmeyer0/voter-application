@@ -1,7 +1,7 @@
 package com.nerdery.voting.validator;
 
-/**
- * Created by tperkis on 7/28/14.
- */
+import org.springframework.stereotype.Component;
+
+@Component
 public class CookieValidator {
 }

@@ -117,19 +117,11 @@ public class GameRepositoryTest {
         voteRepository.save(new Vote(game3));
         voteRepository.save(new Vote(game2));
 
-        List<Game> g = gameRepository.findAllGamesWithVotes();
+        List<Game> g = gameRepository.findAllWantedGames();
         Assert.assertTrue(g.size() == 4);
 
         List<Game> expected = Arrays.asList(game3, game, game4, game2);
         Assert.assertEquals(expected, g);
-    }
-
-    @Ignore
-    @Transactional
-    @Test
-    public void makeSureEmptyListIsReturnedWhenNoGamesHaveVotes() throws Exception {
-        List<Game> games = gameRepository.findAllGamesWithVotes();
-        Assert.assertEquals(0, games.size());
     }
 
     @Transactional
@@ -142,5 +134,13 @@ public class GameRepositoryTest {
         gameRepository.save(Arrays.asList(game, game2, game3, game4));
 
         Assert.assertEquals(3, gameRepository.findAllGamesByIsOwned(Boolean.TRUE).size());
+    }
+
+    @Test
+    public void findByTitleWithNonexistentTitlesMustReturnNull() throws Exception {
+        Assert.assertNull(gameRepository.findByTitle(null));
+        Assert.assertNull(gameRepository.findByTitle(""));
+        Assert.assertNull(gameRepository.findByTitle("   \n"));
+        Assert.assertNull(gameRepository.findByTitle("iopsjdfioejwoijf"));
     }
 }

@@ -1,16 +1,21 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: tperkis
-  Date: 7/29/14
-  Time: 12:12 AM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <title></title>
+    <title>Mark Games as Owned</title>
 </head>
 <body>
+
+<h1>Wanted Games</h1>
+<form:form method="post" modelAttribute="ownedGame" action="marked-game">
+    <c:forEach items="${wantedGames}" var="game">
+        <form:radiobutton path="title" value="${game.title}"/>Title: ${game.title} Votes: ${fn:length(game.votes)}<br>
+    </c:forEach>
+    <c:if test="${fn:length(wantedGames) != 0}">
+        <input type="submit" value="Vote">
+    </c:if>
+</form:form>
 
 </body>
 </html>

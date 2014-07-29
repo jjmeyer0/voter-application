@@ -5,9 +5,10 @@ import com.nerdery.voting.model.Vote;
 
 public interface VoteService {
     /**
-     * TODO
-     * @param game
-     * @return
+     * This method takes a {@link Game} object and will create a {@link Vote} based on
+     * the given object.
+     * @param game The {@link Game} object to cast the {@link Vote} on.
+     * @return The {@link Vote} object created when casting a vote.
      */
     Vote castVote(Game game);
 }

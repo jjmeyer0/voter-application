@@ -4,6 +4,8 @@
     <title>Game has been saved!</title>
 </head>
 <body>
-    ${game.title} has been saved!
+    ${game.title} has been saved! And your vote has been casted for it!
+    <br><br>
+    <a href="/">Take me back home</a>
 </body>
 </html>
