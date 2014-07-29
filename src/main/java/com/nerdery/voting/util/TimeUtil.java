@@ -1,6 +1,8 @@
 package com.nerdery.voting.util;
 
-import java.util.Calendar;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class TimeUtil {
     /**
@@ -9,14 +11,18 @@ public class TimeUtil {
      * @return the number of seconds until midnight.
      */
     public static int secondsUntilMidnight() {
-        Calendar c = Calendar.getInstance();
-        long now = c.getTimeInMillis();
-        c.add(Calendar.DATE, 1);
-        c.set(Calendar.HOUR_OF_DAY, 0);
-        c.set(Calendar.MINUTE, 0);
-        c.set(Calendar.SECOND, 0);
-        c.set(Calendar.MILLISECOND, 0);
+        return getDiffInSeconds(LocalDateTime.now(), LocalDate.now().plusDays(1).atStartOfDay());
+    }
 
-        return (int) ((c.getTimeInMillis() - now) / 1000L);
+    /**
+     * This returns the absolute value between the two dates in seconds.
+     *
+     * @param start The start date.
+     * @param end the end date
+     * @return The absolute value of start - end. It will be in seconds.
+     */
+    public static int getDiffInSeconds(LocalDateTime start, LocalDateTime end) {
+        // shouldn't cast...
+        return (int) Duration.between(end, start).getSeconds();
     }
 }
