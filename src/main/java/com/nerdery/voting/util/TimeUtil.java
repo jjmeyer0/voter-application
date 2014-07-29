@@ -4,7 +4,9 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class TimeUtil {
+public final class TimeUtil {
+    private TimeUtil() {}
+
     /**
      * This will get the current time in milliseconds and subtract the current day's midnight time in
      * milliseconds, and then it will finally divide my one thousand to get seconds.
