@@ -10,22 +10,22 @@
     <packaging>war</packaging>
 
     <properties>
-        <junit.version>4.11</junit.version>
-        <mockito-all.version>1.8.4</mockito-all.version>
         <hibernate-core.version>${hibernate-entitymanager.version}</hibernate-core.version>
         <hibernate-entitymanager.version>4.3.6.Final</hibernate-entitymanager.version>
-        <spring-webmvc.version>4.0.6.RELEASE</spring-webmvc.version>
-        <mysql-connector-java.version>5.1.31</mysql-connector-java.version>
-        <javassist.version>3.18.2-GA</javassist.version>
-        <spring-web.version>4.0.6.RELEASE</spring-web.version>
-        <spring-orm.version>4.0.6.RELEASE</spring-orm.version>
-        <spring-context.version>4.0.6.RELEASE</spring-context.version>
-        <spring-test.version>4.0.6.RELEASE</spring-test.version>
-        <spring-data-jpa.version>1.6.1.RELEASE</spring-data-jpa.version>
         <hibernate-validator.version>5.1.1.Final</hibernate-validator.version>
+        <javassist.version>3.18.2-GA</javassist.version>
         <jstl.version>2.5</jstl.version>
-        <taglibs.version>1.1.2</taglibs.version>
+        <junit.version>4.11</junit.version>
+        <mockito-all.version>1.8.4</mockito-all.version>
+        <mysql-connector-java.version>5.1.31</mysql-connector-java.version>
         <slf4j-log4j12.version>1.7.5</slf4j-log4j12.version>
+        <spring-context.version>4.0.6.RELEASE</spring-context.version>
+        <spring-data-jpa.version>1.6.1.RELEASE</spring-data-jpa.version>
+        <spring-orm.version>4.0.6.RELEASE</spring-orm.version>
+        <spring-test.version>4.0.6.RELEASE</spring-test.version>
+        <spring-web.version>4.0.6.RELEASE</spring-web.version>
+        <spring-webmvc.version>4.0.6.RELEASE</spring-webmvc.version>
+        <taglibs.version>1.1.2</taglibs.version>
     </properties>
 
     <dependencies>

@@ -1,7 +1,5 @@
 package com.nerdery.voting.util;
 
-import com.nerdery.voting.service.GameService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -10,27 +8,31 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 @Component
 public class CookieHelper {
 
     /**
-     * TODO
-     * @param request
-     * @return
+     * Determines if there is a cookie that has a key lastVote with a value of today's date.
+     *
+     * @param request The {@link javax.servlet.http.HttpServletRequest} to check all cookies for last vote date.
+     * @return If last vote date is today then true otherwise false.
      */
     public boolean hasVotedToday(HttpServletRequest request) {
-        return Arrays.asList(request.getCookies()).stream()
-                .filter(c -> "lastVote".equals(c.getName()) && LocalDate.now().equals(LocalDate.parse(c.getValue())))
-                .collect(Collectors.toList()).size() > 0;
+        for (Cookie c : request.getCookies()) {
+            if ("lastVote".equals(c.getName()) && LocalDate.now().toString().equals(c.getValue())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
-     * TODO
-     * @param request
-     * @param results
+     * Determines if there is a cookie that has a key lastVote with a value of today's date.
+     *
+     * @param request The {@link javax.servlet.http.HttpServletRequest} to get the cookies from.
+     * @param results Add {@link org.springframework.validation.ObjectError} to {@code results} if the {@code request}
+     *                has a cookie with the last vote date as today.
      */
     public void hasVotedToday(HttpServletRequest request, BindingResult results) {
         if (hasVotedToday(request)) {
@@ -39,10 +41,13 @@ public class CookieHelper {
     }
 
     /**
-     * TODO
-     * @param key
-     * @param value
-     * @return
+     * This will create a cookie with key, {@code key}, and value, {@code value}. It will then
+     * set the max age to the number of seconds until midnight.
+     *
+     * @param key The key of the cookie
+     * @param value The value of the cookie
+     * @return The {@link Cookie} object based on {@code key}, {@code value}, and the number of
+     * seconds until midnight.
      */
     public Cookie createCookieForToday(String key, String value) {
         Cookie c = new Cookie(key, value);
@@ -51,8 +56,10 @@ public class CookieHelper {
     }
 
     /**
-     * TODO
-     * @param results
+     * Will add an error to {@code results} if the current day of the week is Saturday of Sunday.
+     *
+     * @param results if Monday through Friday nothing, otherwise add {@link org.springframework.validation.ObjectError}
+     *                to {@code results}.
      */
     public void validateWeekday(BindingResult results) {
         if (LocalDate.now().getDayOfWeek() == DayOfWeek.SATURDAY

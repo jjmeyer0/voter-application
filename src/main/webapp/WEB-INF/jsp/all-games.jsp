@@ -11,7 +11,7 @@
 
     <h1>Owned Games</h1>
     <c:forEach items="${ownedGames}" var="owned">
-        <form:label path="title">Title: ${owned.title}</form:label><br>
+        Title: ${owned.title}<br>
     </c:forEach>
 
     <h1>Wanted Games</h1>

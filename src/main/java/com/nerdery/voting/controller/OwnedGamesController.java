@@ -35,11 +35,14 @@ public class OwnedGamesController {
     @RequestMapping("/mark-games")
     public ModelAndView makeGames() {
         List<Game> wantedGames = gameService.getWantedGamesSortedByVoteCountLoadEagerly();
-        return new ModelAndView("owned-games", "wantedGames", wantedGames);
+        ModelAndView modelAndView = new ModelAndView("mark-games", "wantedGames", wantedGames);
+        modelAndView.addObject("markedGame", new Game());
+        return modelAndView;
     }
 
     @RequestMapping(value = "/marked-game", method = RequestMethod.POST)
-    public ModelAndView addGame(@ModelAttribute Game game) {
+    public ModelAndView addGame(@ModelAttribute("markedGame") Game game) {
+        game = gameService.getGameByTitle(game.getTitle());
         game.setIsOwned(true);
         gameService.save(game);
 

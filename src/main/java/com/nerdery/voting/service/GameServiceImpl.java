@@ -26,7 +26,6 @@ public class GameServiceImpl implements GameService {
     @Override
     public List<Game> getWantedGamesSortedByVoteCountLoadEagerly() {
         List<Game> allGamesWithVotes = gameRepository.findAllWantedGames();
-        Hibernate.initialize(allGamesWithVotes);
         return allGamesWithVotes;
     }
 

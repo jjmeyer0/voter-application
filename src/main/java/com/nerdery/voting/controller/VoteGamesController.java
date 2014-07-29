@@ -45,13 +45,14 @@ public class VoteGamesController {
     @RequestMapping(value = "/vote-for-game", method = RequestMethod.POST)
     public ModelAndView castVoteForGame(@Validated @ModelAttribute("wantedGame") Game game
             , BindingResult result, HttpServletRequest request, HttpServletResponse response) {
-        cookieHelper.hasVotedToday(request, result);
+        //cookieHelper.hasVotedToday(request, result); TODO remove this comment
         cookieHelper.validateWeekday(result);
 
         if (result.hasErrors()) {
-            String errors = result.getAllErrors().stream()
-                    .map(ObjectError::getDefaultMessage)
-                    .reduce(" ", String::concat);
+            String errors = "";
+            for (ObjectError oe : result.getAllErrors()) {
+                errors += " " + oe.getDefaultMessage();
+            }
 
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.setViewName("error-page");
@@ -72,6 +73,7 @@ public class VoteGamesController {
         modelAndView.addObject("ownedGames", gameService.getOwnedGames());
         modelAndView.addObject("wantedGames", gameService.getWantedGamesSortedByVoteCountLoadEagerly());
         modelAndView.addObject("wantedGame", new Game());
+
         return modelAndView;
     }
 }

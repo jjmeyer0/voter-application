@@ -15,38 +15,39 @@ public interface GameService {
     Game createGame(String title);
 
     /**
+     * This will take the needed information for a {@link Game} and will create a {@link Game}.
      *
-     * @param title
-     * @param isOwned
-     * @return
+     * @param title the title of the game
+     * @param isOwned whether the game is owned or not.
+     * @return The newly created {@link Game} object.
      */
     Game createGame(String title, Boolean isOwned);
 
     /**
-     * TODO
-     * @return
+     * This will return a list of all the games that are owned.
+     * @return A list of games the are owned.
      */
     List<Game> getOwnedGames();
 
     /**
-     * TODO
-     * @param title
-     * @return
+     * This returns the {@link com.nerdery.voting.model.Game} associated with {@code title}.
+     * @param title The title to find.
+     * @return The {@link Game} object with the given title.
      */
     Game getGameByTitle(String title);
 
     /**
-     * TODO
-     * @param title
-     * @return
+     * This will determine if a given {@code title} exists.
+     * @param title The game title to find.
+     * @return If the title exists then true otherwise false.
      */
     boolean doesGameExistByTitle(String title);
 
     /**
-     * TODO
+     * This method will update or create a new game.
      *
-     * @param game
-     * @return
+     * @param game The {@link Game} to update or save.
+     * @return the newly update {@link Game}.
      */
     Game save(Game game);
 

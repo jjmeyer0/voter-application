@@ -5,6 +5,6 @@
     <title></title>
 </head>
 <body>
-    <c:out value="${error}"/>
+    <c:out value="${error}"/> <!-- TODO turn into list -->
 </body>
 </html>

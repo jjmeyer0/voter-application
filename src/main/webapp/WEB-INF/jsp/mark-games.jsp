@@ -8,7 +8,7 @@
 <body>
 
 <h1>Wanted Games</h1>
-<form:form method="post" modelAttribute="ownedGame" action="marked-game">
+<form:form method="post" modelAttribute="markedGame" action="marked-game">
     <c:forEach items="${wantedGames}" var="game">
         <form:radiobutton path="title" value="${game.title}"/>Title: ${game.title} Votes: ${fn:length(game.votes)}<br>
     </c:forEach>

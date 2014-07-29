@@ -34,7 +34,7 @@ public interface GameRepository extends JpaRepository<Game, Long> {
      * @return List of all {@link Game}s that have votes ordered by most votes then title. If not games exist
      * then null.
      */
-    @Query(value = "from Game g where size(g.votes) >= 0 order by size(g.votes) desc, g.title")
+    @Query(value = "from Game g where g.isOwned = false order by size(g.votes) desc, g.title")
     List<Game> findAllWantedGames();
 
     /**

@@ -17,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.logging.Logger;
 
@@ -46,16 +45,17 @@ public class AddGameController {
 
         // These should be validators
         cookieHelper.validateWeekday(results);
-        cookieHelper.hasVotedToday(request, results);
+        //cookieHelper.hasVotedToday(request, results); TODO add this back
 
         if (gameService.doesGameExistByTitle(game.getTitle())) {
             results.addError(new ObjectError("gameExists", "The title already exists."));
         }
 
         if (results.hasErrors()) {
-            String errors = results.getAllErrors().stream()
-                    .map(ObjectError::getDefaultMessage)
-                    .reduce(" ", String::concat);
+            String errors = "";
+            for (ObjectError oe : results.getAllErrors()) {
+                errors += " " + oe.getDefaultMessage();
+            }
 
             modelAndView.setViewName("error-page");
             modelAndView.addObject("error", errors);
