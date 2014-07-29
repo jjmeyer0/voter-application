@@ -2,7 +2,6 @@ package com.nerdery.voting.controller;
 
 import com.nerdery.voting.model.Game;
 import com.nerdery.voting.service.GameService;
-import com.nerdery.voting.service.VoteService;
 import com.nerdery.voting.util.CookieHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,9 +20,6 @@ import java.util.logging.Logger;
 
 @Controller
 public class AddGameController {
-    @Autowired
-    private VoteService voteService;
-
     @Autowired
     private GameService gameService;
 
@@ -60,7 +56,7 @@ public class AddGameController {
             modelAndView.addObject("error", errors);
         } else {
             game.setIsOwned(false);
-            voteService.castVote(game);
+            gameService.castVote(game);
 
             response.addCookie(cookieHelper.createCookieForToday("lastVote", LocalDate.now().toString()));
             modelAndView.setViewName("add-game-success");

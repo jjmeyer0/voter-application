@@ -1,6 +1,7 @@
 package com.nerdery.voting.service;
 
 import com.nerdery.voting.model.Game;
+import com.nerdery.voting.model.Vote;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public interface GameService {
      * @param isOwned whether the game is owned or not.
      * @return The newly created {@link Game} object.
      */
-    Game createGame(String title, Boolean isOwned);
+    Game save(String title, Boolean isOwned);
 
     /**
      * This will return a list of all the games that are owned.
@@ -56,4 +57,12 @@ public interface GameService {
      * @return The list of {@link Game}s that are wanted.
      */
     List<Game> getWantedGamesSortedByVoteCountLoadEagerly();
+
+    /**
+     * This method takes a {@link Game} object and will create a {@link com.nerdery.voting.model.Vote} based on
+     * the given object.
+     * @param game The {@link Game} object to cast the {@link com.nerdery.voting.model.Vote} on.
+     * @return The {@link com.nerdery.voting.model.Vote} object created when casting a vote.
+     */
+    Vote castVote(Game game);
 }
