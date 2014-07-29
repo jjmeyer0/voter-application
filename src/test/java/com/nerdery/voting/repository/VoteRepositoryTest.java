@@ -63,5 +63,5 @@ public class VoteRepositoryTest {
         }
     }
 
-    // TODO
+    // TODO Add tests
 }

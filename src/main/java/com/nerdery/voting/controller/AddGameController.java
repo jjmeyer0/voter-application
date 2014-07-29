@@ -45,7 +45,7 @@ public class AddGameController {
 
         // These should be validators
         cookieHelper.validateWeekday(results);
-        //cookieHelper.hasVotedToday(request, results); TODO add this back
+        cookieHelper.hasVotedToday(request, results);
 
         if (gameService.doesGameExistByTitle(game.getTitle())) {
             results.addError(new ObjectError("gameExists", "The title already exists."));

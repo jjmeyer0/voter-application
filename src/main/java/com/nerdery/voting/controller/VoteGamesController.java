@@ -45,7 +45,7 @@ public class VoteGamesController {
     @RequestMapping(value = "/vote-for-game", method = RequestMethod.POST)
     public ModelAndView castVoteForGame(@Validated @ModelAttribute("wantedGame") Game game
             , BindingResult result, HttpServletRequest request, HttpServletResponse response) {
-        //cookieHelper.hasVotedToday(request, result); TODO remove this comment
+        cookieHelper.hasVotedToday(request, result);
         cookieHelper.validateWeekday(result);
 
         if (game == null || game.getTitle() == null || "".equals(game.getTitle())) {
