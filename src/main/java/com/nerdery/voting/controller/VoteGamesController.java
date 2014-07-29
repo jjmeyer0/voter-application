@@ -48,6 +48,10 @@ public class VoteGamesController {
         //cookieHelper.hasVotedToday(request, result); TODO remove this comment
         cookieHelper.validateWeekday(result);
 
+        if (game == null || game.getTitle() == null || "".equals(game.getTitle())) {
+            result.addError(new ObjectError("notSelected", "No title was selected."));
+        }
+
         if (result.hasErrors()) {
             String errors = "";
             for (ObjectError oe : result.getAllErrors()) {

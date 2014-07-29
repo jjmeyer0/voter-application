@@ -1,12 +1,10 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title></title>
+    <title>Game has been marked!</title>
 </head>
 <body>
-    <c:out value="${error}"/> <!-- should turn into list -->
-
+    ${game.title} has been marked as owned!
     <br><br>
     <a href="/">Take me back home</a>
 </body>

@@ -23,5 +23,8 @@
             <input type="submit" value="Vote">
         </c:if>
     </form:form>
+
+    <br><br>
+    <a href="/">Take me back home</a>
 </body>
 </html>

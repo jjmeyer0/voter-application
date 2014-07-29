@@ -13,9 +13,11 @@
         <form:radiobutton path="title" value="${game.title}"/>Title: ${game.title} Votes: ${fn:length(game.votes)}<br>
     </c:forEach>
     <c:if test="${fn:length(wantedGames) != 0}">
-        <input type="submit" value="Vote">
+        <input type="submit" value="Mark as Owned">
     </c:if>
 </form:form>
 
+<br><br>
+<a href="/">Take me back home</a>
 </body>
 </html>

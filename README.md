@@ -9,3 +9,4 @@ Things that need work (or do differently):
 * Add more unit test coverage
 * Add more javadoc
 * extract properties for db to external source
+* Use templates in JSPs

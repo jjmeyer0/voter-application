@@ -5,6 +5,7 @@ import com.nerdery.voting.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,12 +43,19 @@ public class OwnedGamesController {
 
     @RequestMapping(value = "/marked-game", method = RequestMethod.POST)
     public ModelAndView addGame(@ModelAttribute("markedGame") Game game) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        if (game == null || game.getTitle() == null || "".equals(game.getTitle())) {
+            modelAndView.setViewName("error-page");
+            modelAndView.addObject("error", "A title must be selected.");
+            return modelAndView;
+        }
+
         game = gameService.getGameByTitle(game.getTitle());
         game.setIsOwned(true);
         gameService.save(game);
 
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("add-game-success");
+        modelAndView.setViewName("mark-game-success");
         modelAndView.addObject("game", game);
 
         return modelAndView;

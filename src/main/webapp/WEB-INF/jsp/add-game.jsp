@@ -11,5 +11,8 @@
 
     <input value="Submit" type="submit">
 </form:form>
+
+<br><br>
+<a href="/">Take me back home</a>
 </body>
 </html>
